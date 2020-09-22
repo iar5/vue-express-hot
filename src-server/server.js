@@ -1,12 +1,5 @@
 const express = require('express');
-const webpack = require('webpack');
 const path = require('path');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const history = require('connect-history-api-fallback');
-
-
-
 
 const app = express();
 
@@ -15,8 +8,11 @@ app.get('/api/test', function (req, res) {
 });
 
 
-
 if (process.env.NODE_ENV === 'development') {
+	const webpack = require('webpack');
+	const webpackDevMiddleware = require('webpack-dev-middleware');
+	const webpackHotMiddleware = require('webpack-hot-middleware');
+	
 	const webpackConfig = require("@vue/cli-service/webpack.config.js");
 	webpackConfig.entry.app.unshift('webpack-hot-middleware/client');
 
@@ -34,6 +30,7 @@ if (process.env.NODE_ENV === 'development') {
 	});
 } 
 else {
+	const history = require('connect-history-api-fallback');
 	const staticFileMiddleware = express.static(path.join(__dirname + '/../dist'));
 	app.use(staticFileMiddleware);
 	app.use(history({
@@ -44,9 +41,6 @@ else {
 }
 
 
-
 const server = app.listen(process.env.PORT || 8080, "0.0.0.0", function () {
 	console.log("App now running on port",  server.address().port);
 });
-
-
