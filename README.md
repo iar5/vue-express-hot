@@ -1,4 +1,4 @@
-# hello-world
+# vue-exprees-hot template repository
 
 ## Project setup
 ```
