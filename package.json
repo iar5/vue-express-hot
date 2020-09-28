@@ -8,10 +8,12 @@
     "dev": "cross-env NODE_ENV=development node src-server/server.js"
   },
   "dependencies": {
+    "compression-webpack-plugin": "^6.0.2",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
-    "node-fetch": "^2.6.1",
+    "express-static-gzip": "^2.0.8",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

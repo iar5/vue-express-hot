@@ -30,6 +30,10 @@ if (process.env.NODE_ENV === 'development') {
 	});
 } 
 else {
+	// text file compression (for higher google lighthouse score) https://stackoverflow.com/a/57708321/7764088
+	const expressStaticGzip = require('express-static-gzip');
+	app.use(expressStaticGzip(path.join(__dirname, '/../dist')))
+	
 	const history = require('connect-history-api-fallback');
 	const staticFileMiddleware = express.static(path.join(__dirname + '/../dist'));
 	app.use(staticFileMiddleware);
